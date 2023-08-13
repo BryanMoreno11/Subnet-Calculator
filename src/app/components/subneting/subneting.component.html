@@ -1,0 +1,28 @@
+<div class="container">
+    <form class="row mt-2">
+        <div class="col-7">
+            <label for="ip">Porción de red:</label>
+            <input class="form-control" type="text" id="ip" name="ip" [(ngModel)]="ip">
+        </div>
+        <div class="col-7">
+            <label for="red">Número de redes:</label>
+            <select class="form-control" name="n" id="n" [(ngModel)]="n" (change)="calcRedes()">
+                <option value="2">2</option>
+                <option value="4">4</option>
+                <option value="8">8</option>
+                <option value="16">16</option>
+                <option value="32">32</option>
+                <option value="64">64</option>
+            </select>
+        </div>
+        <div class="col-7">
+            <label for="mask">Máscara de red:</label>
+            <input class="form-control" type="mask" id="mask" name="mask" [(ngModel)]="mask">
+        </div>
+    </form>
+</div>
+
+<div class="container mt-2" *ngFor="let n of redes, let i=index">
+    <p *ngIf="mask!=null && ip!=''">{{ip}}.{{n}}/{{calcMasks()}}</p>
+    <br *ngIf="(i+1)%4==0">
+</div>
